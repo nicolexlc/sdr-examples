@@ -1,0 +1,268 @@
+options:
+  parameters:
+    author: ''
+    category: '[GRC Hier Blocks]'
+    cmake_opt: ''
+    comment: ''
+    copyright: ''
+    description: ''
+    gen_cmake: 'On'
+    gen_linking: dynamic
+    generate_options: qt_gui
+    hier_block_src_path: '.:'
+    id: top_block
+    max_nouts: '0'
+    output_language: python
+    placement: (0,0)
+    qt_qss_theme: ''
+    realtime_scheduling: ''
+    run: 'True'
+    run_command: '{python} -u {filename}'
+    run_options: prompt
+    sizing_mode: fixed
+    thread_safe_setters: ''
+    title: ''
+    window_size: ''
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [8, 8]
+    rotation: 0
+    state: enabled
+
+blocks:
+- name: samp_rate
+  id: variable
+  parameters:
+    comment: ''
+    value: '48000'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [192, 8]
+    rotation: 0
+    state: enabled
+- name: analog_nbfm_tx_0
+  id: analog_nbfm_tx
+  parameters:
+    affinity: ''
+    alias: ''
+    audio_rate: '48000'
+    comment: ''
+    fh: '-1.0'
+    max_dev: 5e3
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    quad_rate: '48000'
+    tau: 75e-6
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [641, 92]
+    rotation: 0
+    state: enabled
+- name: analog_sig_source_x_0
+  id: analog_sig_source_x
+  parameters:
+    affinity: ''
+    alias: ''
+    amp: '1'
+    comment: ''
+    freq: '1000'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    offset: '0'
+    phase: '0'
+    samp_rate: samp_rate
+    type: float
+    waveform: analog.GR_COS_WAVE
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [33, 96]
+    rotation: 0
+    state: enabled
+- name: blks2_selector_0
+  id: blks2_selector
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    input_index: variable_chooser_0
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    num_inputs: '2'
+    num_outputs: '1'
+    output_index: '0'
+    type: float
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [662, 434]
+    rotation: 0
+    state: enabled
+- name: blks2_tcp_sink_0
+  id: blks2_tcp_sink
+  parameters:
+    addr: 127.0.0.1
+    affinity: ''
+    alias: ''
+    comment: ''
+    port: '9999'
+    server: 'False'
+    type: complex
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1246, 329]
+    rotation: 0
+    state: enabled
+- name: blocks_throttle_0
+  id: blocks_throttle
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    ignoretag: 'True'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    samples_per_second: samp_rate
+    type: float
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [383, 427]
+    rotation: 0
+    state: enabled
+- name: blocks_throttle_0_0
+  id: blocks_throttle
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    ignoretag: 'True'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    samples_per_second: samp_rate
+    type: float
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [319, 499]
+    rotation: 0
+    state: enabled
+- name: blocks_wavfile_source_0
+  id: blocks_wavfile_source
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    file: C:\Users\nicko\Downloads\Energetic Rock (30 sec) - Royalty-Free Background
+      Music _ Cinematic.wav
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    nchan: '1'
+    repeat: 'True'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [48, 396]
+    rotation: 0
+    state: enabled
+- name: freq_xlating_fir_filter_xxx_0
+  id: freq_xlating_fir_filter_xxx
+  parameters:
+    affinity: ''
+    alias: ''
+    center_freq: '10000'
+    comment: ''
+    decim: '1'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    samp_rate: samp_rate
+    taps: '4'
+    type: ccc
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [951, 119]
+    rotation: 0
+    state: enabled
+- name: variable_chooser_0
+  id: variable_chooser
+  parameters:
+    alias: ''
+    choices: '[0,1]'
+    comment: ''
+    grid_pos: 0,0,1,10
+    label: ''
+    labels: '[''tono'',''song'' ]'
+    notebook: ''
+    style: wx.RA_HORIZONTAL
+    type: radio_buttons
+    value: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [24, 264]
+    rotation: 0
+    state: enabled
+- name: wxgui_fftsink2_0
+  id: wxgui_fftsink2
+  parameters:
+    affinity: ''
+    alias: ''
+    average: 'False'
+    avg_alpha: '0'
+    baseband_freq: '0'
+    comment: ''
+    fft_rate: '15'
+    fft_size: '1024'
+    freqvar: None
+    grid_pos: ''
+    notebook: ''
+    peak_hold: 'False'
+    ref_level: '0'
+    ref_scale: '2.0'
+    samp_rate: samp_rate
+    title: FFT Plot
+    type: complex
+    win: None
+    win_size: ''
+    y_divs: '10'
+    y_per_div: '10'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1214, 85]
+    rotation: 0
+    state: enabled
+
+connections:
+- [analog_nbfm_tx_0, '0', freq_xlating_fir_filter_xxx_0, '0']
+- [analog_sig_source_x_0, '0', blocks_throttle_0, '0']
+- [blks2_selector_0, '0', analog_nbfm_tx_0, '0']
+- [blocks_throttle_0, '0', blks2_selector_0, '0']
+- [blocks_throttle_0_0, '0', blks2_selector_0, '1']
+- [blocks_wavfile_source_0, '0', blocks_throttle_0_0, '0']
+- [freq_xlating_fir_filter_xxx_0, '0', blks2_tcp_sink_0, '0']
+- [freq_xlating_fir_filter_xxx_0, '0', wxgui_fftsink2_0, '0']
+
+metadata:
+  file_format: 1
